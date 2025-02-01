@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nama-aplikasi-anda
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nama-aplikasi-anda
+  template:
+    metadata:
+      labels:
+        name: nama-aplikasi-anda
+    spec:
+      containers:
+      - name: container-nama-aplikasi-anda
+        image: AlamatPrivateRegistryAnda/images-nama-aplikasi-anda:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+      imagePullSecrets:
+      - name: NAMA-KEY-ANDA
+      tolerations:
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
